@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CitaNOVA - front-end funcional 1.0 responsive, accesible y alineado con los requerimientos del proyecto.">
+  <meta name="application-name" content="CitaNOVA">
+  <meta name="version" content="1.0">
+  <title>CitaNOVA | Gestión inteligente de citas</title>
+  <link rel="icon" href="assets/citanova-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#p01" data-go="p01" aria-label="CitaNOVA - Ir al inicio">
+        <img src="assets/citanova-mark.svg" alt="" class="brand-mark">
+        <span class="brand-copy"><strong>CitaNOVA</strong><small>Gestión inteligente de citas</small></span>
+      </a>
+      <button id="menuButton" class="menu-button" type="button" aria-expanded="false" aria-controls="mainNav"><span aria-hidden="true">☰</span><span class="sr-only">Abrir menú</span></button>
+      <nav id="mainNav" class="main-nav" aria-label="Navegación principal">
+        <button type="button" data-go="p01">INICIO</button>
+        <button type="button" data-go="p05">Agendar</button>
+        <button type="button" data-go="p08">Mis citas</button>
+        <button type="button" data-state="info">Notificaciones</button>
+        <button type="button" data-go="p02">Perfil</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="page-shell">
+      <div id="breadcrumb" class="breadcrumb sr-only" aria-label="Ruta de navegación">Inicio</div>
+
+      <!-- P01 -->
+      <section id="view-p01" class="view active decorated landing-view" data-title="Inicio / Landing">
+        <div class="landing-actions">
+          <button class="top-text-link" type="button" data-go="p02">Iniciar sesión</button>
+          <button class="top-text-link" type="button" data-go="p03">Crear cuenta</button>
+        </div>
+        <div class="hero figma-hero">
+          <div class="hero-copy">
+            <span class="eyebrow">P01 · INICIO / LANDING</span>
+            <h1 class="brand-title">CitaNOVA</h1>
+            <div class="landing-text-block">
+              <h2>Gestión inteligente<br>de citas</h2>
+              <p>Centraliza tu agenda, reduce ausencias y optimiza la atención de clientes y profesionales con una interfaz ágil, intuitiva y disponible 24/7.</p>
+            </div>
+            <div class="action-row compact-actions">
+              <button class="btn btn-primary" type="button" data-go="p05">Agendar una cita</button>
+              <button class="btn btn-outline" type="button" data-go="p02">Iniciar sesión</button>
+            </div>
+          </div>
+          <div class="shape-stage" aria-hidden="true">
+            <span class="shape shape-orange"></span><span class="shape shape-teal"></span><span class="shape shape-navy"></span><span class="shape shape-mint"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- P02 -->
+      <section id="view-p02" class="view decorated" data-title="Inicio de sesión">
+        <div class="split-auth">
+          <div class="auth-intro mockup-copy">
+            <span class="eyebrow">P02 · INICIO DE SESIÓN</span>
+            <h1>BIENVENIDO DE NUEVO</h1>
+            <div class="outline-note">
+              <p>• Accede a tus próximas citas.</p><p>• Administra servicios y disponibilidad.</p><p>• Consulta notificaciones y estados.</p>
+            </div>
+          </div>
+          <form id="loginForm" class="figma-form" novalidate>
+            <h2>Iniciar Sesión</h2>
+            <div class="field-group"><label for="loginEmail">Correo electrónico</label><input id="loginEmail" type="email" autocomplete="email" placeholder="nombre@correo.com" required><span class="field-error">Ingresa un correo válido.</span></div>
+            <div class="field-group"><label for="loginPassword">Contraseña</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required><span class="field-error">Ingresa al menos 6 caracteres.</span></div>
+            <div class="field-group"><label for="loginRole">Rol</label><select id="loginRole" required><option value="">Selecciona un rol</option><option value="cliente">Cliente</option><option value="profesional">Profesional</option><option value="admin">Administrador</option></select><span class="field-error">Selecciona un rol.</span></div>
+            <button class="btn btn-navy w-full" type="submit">INGRESAR</button>
+            <div class="form-links"><button type="button" class="text-link" data-state="info">¿Olvidaste tu contraseña?</button><button type="button" class="text-link" data-go="p03">Crear cuenta</button></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- P03 -->
+      <section id="view-p03" class="view decorated" data-title="Registro">
+        <div class="profile-card-wrap">
+          <form id="registerForm" class="profile-card" novalidate>
+            <div class="profile-card-head"><div><span class="eyebrow">P03 · REGISTRO</span><h1>CREAR PERFIL</h1><p>Completa los datos solicitados. Los campos obligatorios están identificados.</p></div><div class="mini-brand"><strong>CitaNOVA</strong><small>Gestión inteligente de citas</small></div></div>
+            <div class="two-column-form">
+              <div class="field-group"><label for="regNames">Nombres</label><input id="regNames" type="text" required placeholder="Fredy"><span class="field-error">Campo obligatorio.</span></div>
+              <div class="field-group"><label for="regLastnames">Apellidos</label><input id="regLastnames" type="text" required placeholder="Castañeda"><span class="field-error">Campo obligatorio.</span></div>
+              <div class="field-group"><label for="regDoc">Cédula</label><input id="regDoc" type="text" inputmode="numeric" required placeholder="1012345678"><span class="field-error">Campo obligatorio.</span></div>
+              <div class="field-group"><label for="regPhone">Teléfono</label><input id="regPhone" type="tel" inputmode="tel" required placeholder="300 000 0000"><span class="field-error">Campo obligatorio.</span></div>
+              <div class="field-group"><label for="regEmail">Correo electrónico</label><input id="regEmail" type="email" required placeholder="nombre@correo.com"><span class="field-error">Correo no válido.</span></div>
+              <div class="field-group"><label for="regPassword">Contraseña</label><input id="regPassword" type="password" minlength="6" required placeholder="••••••••"><span class="field-error">Mínimo 6 caracteres.</span></div>
+              <label class="check-row full-span"><input id="regTerms" type="checkbox" required><span>Confirmo que los datos son correctos y acepto la política de privacidad.</span></label>
+              <div class="full-span profile-actions"><button type="button" class="text-link" data-go="p02">Volver al inicio</button><button class="btn btn-navy" type="submit">Guardar y continuar</button></div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- P04 -->
+      <section id="view-p04" class="view decorated" data-title="Dashboard cliente">
+        <div class="client-heading"><span class="eyebrow">P04 · DASHBOARD CLIENTE</span><h1>Hola<br><strong id="clientName">FREDY</strong></h1><p>Gestiona tus citas en un solo lugar.</p></div>
+        <span id="metricUpcoming" class="sr-only">1</span>
+        <div class="client-card-grid">
+          <article class="client-card teal-edge"><h2>Próxima cita</h2><div id="dashboardAppointment" class="appointment-summary compact-summary"></div></article>
+          <article class="client-card orange-edge"><h2>Acción Rápida</h2><p>Agenda una nueva cita.</p><button type="button" class="mini-action" data-go="p05">Agendar nueva cita</button></article>
+          <article class="client-card orange-edge"><h2>Estado de cuenta</h2><p>Sin penalizaciones · 0 alertas.</p></article>
+          <article class="client-card navy-edge"><h2>Mis citas</h2><p>Consulta próximas citas e historial.</p><button type="button" class="mini-action" data-go="p08">Ver mis citas</button></article>
+          <article class="client-card teal-edge"><h2>Notificaciones</h2><p>Confirmaciones, cambios de agenda y recordatorios.</p></article>
+          <article class="client-card orange-edge"><h2>Ayuda</h2><p>Preguntas frecuentes · Hablar con un asesor.</p></article>
+        </div>
+      </section>
+
+      <!-- P05 -->
+      <section id="view-p05" class="view decorated" data-title="Selección de servicio">
+        <div class="flow-heading figma-flow"><div><span class="eyebrow">P05 · SELECCIÓN DE SERVICIO</span><h1>Selecciona tu servicio</h1></div><div class="stepper line-stepper"><span class="active">1<small>Servicio</small></span><span>2<small>Fecha y hora</small></span><span>3<small>Confirmar</small></span></div></div>
+        <div id="serviceOptions" class="selection-grid service-row"></div>
+        <h2 class="subsection-title">Profesional</h2>
+        <div class="preview-professionals">
+          <article><strong>Laura Poveda</strong><span>Disponible ahora</span></article><article><strong>Andrés Angarita</strong><span>Disponible esta semana</span></article><article><strong>Cualquiera disponible</strong><span>Primera opción libre</span></article>
+        </div>
+        <div class="sticky-actions figma-actions"><button class="text-link" type="button" data-go="p04">Volver</button><button id="serviceContinue" class="btn btn-navy" type="button" disabled>Continuar</button></div>
+      </section>
+
+      <!-- P06 -->
+      <section id="view-p06" class="view decorated" data-title="Selección de profesional">
+        <div class="flow-heading figma-flow"><div><span class="eyebrow">P06 · SELECCIÓN DE PROFESIONAL</span><h1>Selecciona tu profesional</h1><p>Servicio seleccionado: <strong id="selectedServiceLabel">Sin seleccionar</strong></p></div><div class="stepper line-stepper"><span class="active">1<small>Servicio</small></span><span>2<small>Fecha y hora</small></span><span>3<small>Confirmar</small></span></div></div>
+        <div class="chosen-service-bar"><strong>Servicio elegido</strong><span id="chosenServiceMirror">Continúa con la selección del profesional.</span></div>
+        <h2 class="subsection-title">Profesional</h2>
+        <div id="professionalOptions" class="selection-grid professional-row"></div>
+        <div class="sticky-actions figma-actions"><button class="text-link" type="button" data-go="p05">Volver</button><button id="professionalContinue" class="btn btn-navy" type="button" disabled>Continuar</button></div>
+      </section>
+
+      <!-- P07 -->
+      <section id="view-p07" class="view decorated" data-title="Fecha y hora">
+        <div class="flow-heading figma-flow"><div><span class="eyebrow">P07 · FECHA Y HORA</span><h1>Selecciona fecha y hora</h1></div><div class="stepper line-stepper"><span>1<small>Servicio</small></span><span class="active">2<small>Fecha y hora</small></span><span>3<small>Confirmar</small></span></div></div>
+        <div class="schedule-card">
+          <div class="calendar-side"><div id="calendarTitle" class="calendar-title">Calendario</div><div id="calendarGrid" class="calendar-grid" aria-label="Calendario sincronizado con la fecha seleccionada"></div><div class="field-group date-field"><label for="appointmentDate">Fecha</label><input id="appointmentDate" type="date"></div></div>
+          <div class="times-side"><h2>Horarios Disponibles</h2><div id="timeOptions" class="time-grid" role="group" aria-label="Horarios disponibles"></div></div>
+        </div>
+        <div class="sr-only-summary"><span id="summaryService">-</span><span id="summaryProfessional">-</span><span id="summaryDate">-</span><span id="summaryTime">-</span></div>
+        <div class="sticky-actions figma-actions"><button class="text-link" type="button" data-go="p06">Volver</button><button id="confirmAppointment" class="btn btn-navy" type="button" disabled>Continuar</button></div>
+      </section>
+
+      <!-- P08 -->
+      <section id="view-p08" class="view decorated" data-title="Mis citas">
+        <div class="page-title-only"><span class="eyebrow">P08 · MIS CITAS</span><h1>MIS CITAS</h1></div>
+        <div class="tabs figma-tabs" role="tablist" aria-label="Filtro de citas"><button class="active" type="button" data-appointment-filter="upcoming">Próximas</button><button type="button" data-appointment-filter="all">Historial</button><button type="button" data-appointment-filter="cancelled">Canceladas</button></div>
+        <div id="appointmentsList" class="appointment-list figma-appointments"></div>
+      </section>
+
+      <!-- P09 -->
+      <section id="view-p09" class="view decorated" data-title="Detalle de cita">
+        <div class="page-title-only"><span class="eyebrow">P09 · DETALLE DE CITA</span><h1>Detalle de cita</h1></div>
+        <div class="detail-layout"><div><div id="appointmentDetail" class="detail-card figma-detail"></div><div class="action-row detail-actions"><button id="reprogramBtn" class="btn btn-primary" type="button">Reprogramar</button><button id="cancelBtn" class="btn btn-orange" type="button">Cancelar cita</button></div></div><aside class="policy-card"><strong>Antes de agendar</strong><p>La cancelación se solicita contra la regla definida por el servicio. Confirma fecha y profesional antes de continuar.</p></aside></div>
+      </section>
+
+      <!-- P10 -->
+      <section id="view-p10" class="view decorated" data-title="Panel profesional">
+        <div class="page-title-only"><span class="eyebrow">P10 · PANEL PROFESIONAL</span><h1>Resumen del día</h1></div>
+        <div class="metric-grid figma-metrics"><article class="metric-card"><span>Citas activas</span><strong id="proActiveCount">0</strong><small>Datos guardados</small></article><article class="metric-card"><span>Próximas</span><strong id="proUpcomingCount">0</strong><small>Desde hoy</small></article><article class="metric-card"><span>Cancelaciones</span><strong id="proCancelledCount">0</strong><small>Histórico local</small></article></div>
+        <section class="panel figma-table-panel"><div class="panel-heading"><h2>Próximas citas</h2></div><div class="table-wrap"><table><thead><tr><th>Fecha / hora</th><th>Cliente</th><th>Servicio</th><th>Estado</th><th>Acción</th></tr></thead><tbody id="professionalAppointmentsBody"></tbody></table></div></section>
+      </section>
+
+      <!-- P11 -->
+      <section id="view-p11" class="view decorated" data-title="Panel administrador">
+        <div class="page-title-only"><span class="eyebrow">P11 · PANEL ADMINISTRADOR</span><h1>Indicadores generales</h1></div>
+        <div class="metric-grid four-cols figma-metrics"><article class="metric-card"><span>Citas registradas</span><strong id="adminTotalCount">0</strong></article><article class="metric-card"><span>Confirmadas</span><strong id="adminConfirmedCount">0</strong></article><article class="metric-card"><span>Canceladas</span><strong id="adminCancelledCount" class="orange-number">0</strong></article><article class="metric-card"><span>Inasistencias</span><strong id="adminNoShowCount">0</strong></article></div>
+        <div class="admin-cards"><article class="admin-card teal-edge"><h2>Gestión Rápida</h2><p>Crear y editar usuarios, profesionales y revisar datos principales.</p><button class="btn btn-primary" type="button" data-state="info">Ver / Crear</button></article><article class="admin-card navy-edge"><h2>Reportes</h2><p>Consultar citas, cancelaciones, indicadores y generar reportes.</p><button class="btn btn-navy" type="button" data-state="info">Gestionar</button></article></div>
+      </section>
+
+      <!-- P12 -->
+      <section id="view-p12" class="view decorated" data-title="Estados y mensajes">
+        <div class="client-heading confirm-heading"><span class="eyebrow">P12 · ESTADOS / MENSAJES</span><h1>Hola<br><strong>FREDY</strong></h1><p>Gestiona tus citas en un solo lugar.</p></div>
+        <div class="state-card figma-state" role="status" aria-live="polite"><div id="stateIcon" class="state-icon" aria-hidden="true">✓</div><h1 id="stateTitle">Confirmada con Éxito!</h1><p id="stateMessage">Se ha enviado un mensaje de confirmación al correo electrónico registrado.</p><div class="confirmation-data"><span>Servicio</span><strong id="stateService">-</strong><span>Cita</span><strong id="stateAppointmentCode">-</strong><span>Hora</span><strong id="stateAppointmentTime">-</strong></div><div class="action-row center"><button class="btn btn-primary" type="button" data-go="p01">Ir al inicio</button><button id="statePrimaryBtn" class="btn btn-orange" type="button">Volver a Mis Citas</button></div></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="footer-shell"><div><strong>CitaNOVA</strong><span>Front-end funcional 1.0 · ADSO SENA 2026</span></div><div><span>Fredy Alberto Castañeda Ramírez</span><span>Andrey Yamá Manihuari</span></div></div></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
