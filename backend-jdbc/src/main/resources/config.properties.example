@@ -1,0 +1,6 @@
+# Copiar este archivo como config.properties y completar SOLO en el equipo local.
+# config.properties esta excluido por .gitignore y NO debe subirse a GitHub.
+
+db.url=jdbc:mysql://localhost:3306/citanova?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Bogota
+db.user=root
+db.password=CAMBIAR_POR_CLAVE_LOCAL
