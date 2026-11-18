@@ -10,62 +10,79 @@ public class PruebaCrudCompleto {
 
     public static void main(String[] args) {
 
-        System.out.println("=== CitaNOVA | Prueba UPDATE + DELETE JDBC ===");
+        System.out.println("=== CitaNOVA | Prueba CRUD COMPLETO JDBC ===");
 
         CitaDAO citaDAO = new CitaDAO();
-        long idCitaPrueba = 1L;
 
         try {
-            // Buscar la cita creada previamente.
-            Cita cita = buscarCita(citaDAO.consultarCitas(), idCitaPrueba);
+            // CREATE
+            LocalDateTime fechaInicio = LocalDateTime.now()
+                    .plusDays(2)
+                    .withHour(9)
+                    .withMinute(0)
+                    .withSecond(0)
+                    .withNano(0);
 
-            if (cita == null) {
-                System.out.println(
-                        "No existe la cita " + idCitaPrueba
-                                + ". Ejecute primero la prueba INSERT + SELECT.");
-                return;
-            }
+            LocalDateTime fechaFin = fechaInicio.plusHours(1);
+
+            Cita nuevaCita = new Cita(
+                    1L, // Cliente
+                    2L, // Profesional
+                    1L, // Servicio
+                    6,  // Estado PENDIENTE
+                    fechaInicio,
+                    fechaFin
+            );
+
+            long idGenerado = citaDAO.insertarCita(nuevaCita);
 
             System.out.println();
-            System.out.println("Cita antes del UPDATE:");
-            System.out.println(cita);
+            System.out.println("CREATE - Cita registrada correctamente.");
+            System.out.println("ID generado: " + idGenerado);
 
-            // Actualizar horario de la cita.
-            LocalDateTime nuevoInicio = LocalDateTime
-                    .of(2026, 11, 19, 14, 0);
+            // READ
+            Cita citaCreada =
+                    buscarCita(citaDAO.consultarCitas(), idGenerado);
 
-            LocalDateTime nuevoFin = LocalDateTime
-                    .of(2026, 11, 19, 15, 0);
+            System.out.println();
+            System.out.println("READ - Cita recuperada:");
+            System.out.println(citaCreada);
 
-            cita.setFechaHoraInicio(nuevoInicio);
-            cita.setFechaHoraFin(nuevoFin);
+            // UPDATE
+            LocalDateTime nuevoInicio =
+                    fechaInicio.withHour(14);
 
-            boolean actualizada = citaDAO.actualizarCita(cita);
+            LocalDateTime nuevoFin =
+                    nuevoInicio.plusHours(1);
+
+            citaCreada.setFechaHoraInicio(nuevoInicio);
+            citaCreada.setFechaHoraFin(nuevoFin);
+
+            boolean actualizada =
+                    citaDAO.actualizarCita(citaCreada);
 
             System.out.println();
             System.out.println(
                     "UPDATE - Cita actualizada correctamente: "
                             + actualizada);
 
-            // Consultar nuevamente para demostrar la actualización.
             Cita citaActualizada =
-                    buscarCita(citaDAO.consultarCitas(), idCitaPrueba);
+                    buscarCita(citaDAO.consultarCitas(), idGenerado);
 
             System.out.println("Cita despues del UPDATE:");
             System.out.println(citaActualizada);
 
-            // Eliminar la cita académica de prueba.
+            // DELETE
             boolean eliminada =
-                    citaDAO.eliminarCita(idCitaPrueba);
+                    citaDAO.eliminarCita(idGenerado);
 
             System.out.println();
             System.out.println(
                     "DELETE - Cita eliminada correctamente: "
                             + eliminada);
 
-            // Verificar que ya no exista.
             Cita citaEliminada =
-                    buscarCita(citaDAO.consultarCitas(), idCitaPrueba);
+                    buscarCita(citaDAO.consultarCitas(), idGenerado);
 
             System.out.println(
                     "Verificacion posterior al DELETE: "
@@ -75,7 +92,7 @@ public class PruebaCrudCompleto {
 
             System.out.println();
             System.out.println(
-                    "Resultado: UPDATE Y DELETE EJECUTADOS CORRECTAMENTE.");
+                    "Resultado: CRUD COMPLETO EJECUTADO CORRECTAMENTE.");
 
         } catch (Exception e) {
             System.err.println();
