@@ -1,0 +1,17 @@
+# Maven
+/target/
+
+# Configuracion local con credenciales: NO versionar
+/src/main/resources/config.properties
+
+# IDE
+/.idea/
+/.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
