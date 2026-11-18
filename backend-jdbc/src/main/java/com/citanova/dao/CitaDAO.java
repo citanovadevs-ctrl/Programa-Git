@@ -191,9 +191,9 @@ public class CitaDAO {
                 : null;
     }
 
-    /**
-     * Aplica validaciones básicas antes de insertar una cita.
-     */
+   /**
+ * Aplica validaciones básicas antes de insertar o actualizar una cita.
+ */
     private void validarCita(Cita cita) {
         if (cita == null) {
             throw new IllegalArgumentException(
@@ -232,4 +232,101 @@ public class CitaDAO {
                     "La fecha y hora de fin debe ser posterior al inicio.");
         }
     }
+	/**
+ * Actualiza los datos principales de una cita existente.
+ *
+ * @param cita cita con el identificador y los nuevos datos.
+ * @return true si la cita fue actualizada.
+ * @throws SQLException si ocurre un error de acceso a datos.
+ */
+public boolean actualizarCita(Cita cita) throws SQLException {
+    validarCita(cita);
+
+    if (cita.getIdCita() == null) {
+        throw new IllegalArgumentException(
+                "El identificador de la cita es obligatorio para actualizar.");
+    }
+
+    String sql = """
+            UPDATE cita
+            SET id_cliente = ?,
+                id_profesional = ?,
+                id_servicio = ?,
+                id_estado_cita = ?,
+                fecha_hora_inicio = ?,
+                fecha_hora_fin = ?,
+                fecha_cancelacion = ?,
+                motivo_cancelacion = ?
+            WHERE id_cita = ?
+            """;
+
+    try (Connection conexion = ConexionBD.obtenerConexion();
+         PreparedStatement sentencia = conexion.prepareStatement(sql)) {
+
+        sentencia.setLong(1, cita.getIdCliente());
+        sentencia.setLong(2, cita.getIdProfesional());
+        sentencia.setLong(3, cita.getIdServicio());
+        sentencia.setInt(4, cita.getIdEstadoCita());
+
+        sentencia.setTimestamp(
+                5,
+                Timestamp.valueOf(cita.getFechaHoraInicio()));
+
+        sentencia.setTimestamp(
+                6,
+                Timestamp.valueOf(cita.getFechaHoraFin()));
+
+        if (cita.getFechaCancelacion() != null) {
+            sentencia.setTimestamp(
+                    7,
+                    Timestamp.valueOf(cita.getFechaCancelacion()));
+        } else {
+            sentencia.setNull(7, java.sql.Types.TIMESTAMP);
+        }
+
+        if (cita.getMotivoCancelacion() != null
+                && !cita.getMotivoCancelacion().isBlank()) {
+            sentencia.setString(
+                    8,
+                    cita.getMotivoCancelacion().trim());
+        } else {
+            sentencia.setNull(8, java.sql.Types.VARCHAR);
+        }
+
+        sentencia.setLong(9, cita.getIdCita());
+
+        return sentencia.executeUpdate() == 1;
+    }
+}
+
+/**
+ * Elimina una cita por su identificador.
+ *
+ * Este método se utiliza únicamente con registros académicos
+ * de prueba para demostrar la operación DELETE del CRUD.
+ *
+ * @param idCita identificador de la cita.
+ * @return true si la cita fue eliminada.
+ * @throws SQLException si ocurre un error de acceso a datos.
+ */
+public boolean eliminarCita(long idCita) throws SQLException {
+
+    if (idCita <= 0) {
+        throw new IllegalArgumentException(
+                "El identificador de la cita debe ser mayor que cero.");
+    }
+
+    String sql = """
+            DELETE FROM cita
+            WHERE id_cita = ?
+            """;
+
+    try (Connection conexion = ConexionBD.obtenerConexion();
+         PreparedStatement sentencia = conexion.prepareStatement(sql)) {
+
+        sentencia.setLong(1, idCita);
+
+        return sentencia.executeUpdate() == 1;
+    }
+}
 }
